@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -31,9 +31,9 @@ const {
      dispatch(fetchAuth(values));
   };
 
-  console.log(errors, isValid);
-
-
+  if(isAuth){
+    return <Navigate to='/' />
+  }
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">
