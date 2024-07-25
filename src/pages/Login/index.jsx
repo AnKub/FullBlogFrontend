@@ -21,8 +21,8 @@ const {
   formState: {errors, isValid}, 
 } = useForm({
       defaultValues: {
-            email: 'Slavaua@.ua',
-            password: '123456',
+            email: 'test@gddd.ua',
+            password: "3DACWxapzyvdK",
   },
   mode: 'onChange',
 });
