@@ -20,6 +20,7 @@ const dispatch = useDispatch();
 const { 
   register, 
   handleSubmit, 
+  setError,
   formState: {errors, isValid}, 
 } = useForm({
       defaultValues: {
@@ -33,7 +34,10 @@ const {
 const onSubmit = async (values) => {
   const data = await dispatch(fetchRegister(values));
   if (!data.payload) {
-   return  alert('Some trouble with autorization');
+    setError('fullName', { type: 'manual', message: 'Registration failed. Check your full name.' });
+      setError('email', { type: 'manual', message: 'Registration failed. Check your email.' });
+      setError('password', { type: 'manual', message: 'Registration failed. Check your password.' });
+      return alert('Some trouble with registration');
   }
   if('token' in data.payload) {
     window.localStorage.setItem('token', data.payload.token);

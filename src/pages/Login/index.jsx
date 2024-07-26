@@ -17,6 +17,7 @@ const dispatch = useDispatch();
 const { 
   register, 
   handleSubmit, 
+  setError,
   formState: {errors, isValid}, 
 } = useForm({
       defaultValues: {
@@ -29,7 +30,9 @@ const {
   const onSubmit = async (values) => {
     const data = await dispatch(fetchAuth(values));
     if (!data.payload) {
-     return  alert('Some trouble with autorization');
+      setError('email', { type: 'manual', message: 'Authorization failed. Check your email.' });
+      setError('password', { type: 'manual', message: 'Authorization failed. Check your password.' });
+     return;
     }
     if('token' in data.payload) {
       window.localStorage.setItem('token', data.payload.token);
