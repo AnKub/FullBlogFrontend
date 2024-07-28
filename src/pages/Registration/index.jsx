@@ -22,7 +22,7 @@ export const Registration = () => {
     formState: { errors, isValid }, 
   } = useForm({
     defaultValues: {
-      fullName: 'Angus', // Исправьте на fullName
+      fullName: 'Angus',
       email: 'test@g.ua',
       password: "1234",
     },
@@ -30,7 +30,6 @@ export const Registration = () => {
   });
 
   const onSubmit = async (values) => {
-    console.log('Form values:', values);  // Добавьте логирование значений формы
     const data = await dispatch(fetchRegister(values));
     if (!data.payload) {
       setError('fullName', { type: 'manual', message: 'Registration failed. Check your full name.' });
@@ -38,7 +37,7 @@ export const Registration = () => {
       setError('password', { type: 'manual', message: 'Registration failed. Check your password.' });
       return alert('Some trouble with registration');
     }
-    if ('token' in data.payload) {
+    if('token' in data.payload) {
       window.localStorage.setItem('token', data.payload.token);
     }
   };
