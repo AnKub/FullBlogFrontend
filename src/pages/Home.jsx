@@ -30,22 +30,24 @@ export const Home = () => {
       </Tabs>
       <Grid container spacing={4}>
         <Grid item xs={8}>
-          {(isPostsLoading ? [...Array(5)] : posts.items).map((obj) =>
+          {(isPostsLoading ? [...Array(5)] : posts.items).map((obj, index) =>
             isPostsLoading ? (
-              <Post key={`loading-${obj._id}`} isLoading={true} />
+              <Post key={index} isLoading={true} />
             ) : (
-              <Post
-                key={obj._id} // Уникальный ключ для каждого элемента
-                id={obj._id}
-                title={obj.title}
-                imageUrl={obj.imageUrl ? `http://localhost:4444${obj.imageUrl}` : ''}
-                user={obj.user}
-                createdAt={obj.createdAt}
-                viewsCount={obj.viewsCount}
-                commentsCount={obj.commentsCount || 0} // Динамическое значение комментариев
-                tags={obj.tags}
-                isEditable={userData?._id === obj.user._id}
-              />
+              obj && obj._id && (
+                <Post
+                  key={obj._id}
+                  id={obj._id}
+                  title={obj.title}
+                  imageUrl={obj.imageUrl ? `http://localhost:4444${obj.imageUrl}` : ''}
+                  user={obj.user}
+                  createdAt={obj.createdAt}
+                  viewsCount={obj.viewsCount}
+                  commentsCount={obj.commentsCount || 0}
+                  tags={obj.tags}
+                  isEditable={userData?._id === obj.user._id}
+                />
+              )
             )
           )}
         </Grid>
