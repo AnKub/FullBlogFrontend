@@ -4,16 +4,64 @@
   padding-bottom: 20px;
   margin-right: 20px;
   margin-left: 17px;
-}
+  border-radius: 10px;
+ }
 
 .avatar {
   margin-right: 15px;
 }
+.title {
+  padding: 15px 15px 0 15px;
+  background-color: #116466;
+  border-radius:10px;
+  color: #d1e8e2;
+  }
+  .children{
+    background-color: #116466;
+    border-radius:10px;
+    color: #d1e8e2;
+  }
+
 
 .form {
-  width: 100%;
+  width: 100%; 
+}
 
-  button {
-    margin-top: 10px;
-  }
+.form button {
+  margin-top: 10px;
+  background: #D9B08C;
+  color: #d1e8e2;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.form button:hover {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(0deg, rgba(17, 100, 102, 1) 0%, rgba(217, 176, 140, 1) 100%);
+}
+
+
+.textField label {
+  color: #d1e8e2;
+}
+
+.textField input {
+  color: #d1e8e2;
+}
+
+
+.listItem {
+  color: #d1e8e2;
+  border-radius: 10px;
+  background-color: #116466; 
+  margin-bottom: 8px;
+  &primary {
+    color: #d1e8e2; /* Цвет шрифта для основного текста */
+}
+&secondary {
+  color: #d1e8e2;
+}
+}
+
+.divider {
+  background: #D9B08C;
 }

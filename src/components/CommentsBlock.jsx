@@ -8,11 +8,12 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import Skeleton from "@mui/material/Skeleton";
+import styles from "./AddComment/AddComment.module.scss";
 
 export const CommentsBlock = ({ items, children, isLoading = true }) => {
   return (
-    <SideBlock title="Comments">
-      <List>
+    <SideBlock title="Comments" classes={{ root: styles.title }}>
+      <List classes={{ root: styles.children}}>
         {(isLoading ? [...Array(5)] : items).map((obj, index) => (
           <React.Fragment key={index}>
             <ListItem alignItems="flex-start">
@@ -29,13 +30,13 @@ export const CommentsBlock = ({ items, children, isLoading = true }) => {
                   <Skeleton variant="text" height={18} width={230} />
                 </div>
               ) : (
-                <ListItemText
+                <ListItemText   classes={{ root: styles.listItem}}
                   primary={obj.user.fullName}
                   secondary={obj.text}
                 />
               )}
             </ListItem>
-            <Divider variant="inset" component="li" />
+            <Divider  classes={{ root: styles.divider}} variant="inset" component="li" />
           </React.Fragment>
         ))}
       </List>

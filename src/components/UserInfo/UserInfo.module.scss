@@ -1,6 +1,9 @@
 .root {
   display: flex;
   align-items: center;
+  color: #d1e8e2;
+  border-radius: 10px;
+  background-color: #116466;
 }
 
 .avatar {
@@ -13,11 +16,13 @@
 .userName {
   font-weight: 500;
   font-size: 14px;
+  color: #d1e8e2;
 }
 
 .userDetails {
   display: flex;
   flex-direction: column;
+  color: #d1e8e2;
 }
 
 .additional {
