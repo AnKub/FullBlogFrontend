@@ -24,10 +24,22 @@ export const Home = () => {
 
   return (
     <>
-      <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">
-        <Tab label="New" />
-        <Tab label="Popular" />
-      </Tabs>
+       <Tabs
+      value={0}
+      aria-label="basic tabs example"
+      sx={{
+        marginBottom: 15,
+        '& .MuiTab-root': {
+          color: '#d1e8e2', 
+        },
+        '& .Mui-selected': {
+          color: '#D9B08C', 
+        },
+      }}
+    >
+      <Tab label="New" />
+      <Tab label="Popular" />
+    </Tabs>
       <Grid container spacing={4}>
         <Grid item xs={8}>
           {(isPostsLoading ? [...Array(5)] : posts.items).map((obj, index) =>
