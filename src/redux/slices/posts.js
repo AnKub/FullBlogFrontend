@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../axios';
 
-// Async thunks
+// Асинхронные thunks
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
   const { data } = await axios.get('/posts');
   return data;
@@ -17,7 +17,7 @@ export const fetchRemovePost = createAsyncThunk('posts/fetchRemovePost', async (
   return id; // возвращаем ID для последующего удаления из состояния
 });
 
-// Initial state
+// Начальное состояние
 const initialState = {
   posts: {
     items: [],
@@ -37,7 +37,7 @@ const postsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // Fetch posts
+      // Загрузка постов
       .addCase(fetchPosts.pending, (state) => {
         state.posts.items = [];
         state.posts.status = 'loading';
@@ -50,7 +50,7 @@ const postsSlice = createSlice({
         state.posts.items = [];
         state.posts.status = 'error';
       })
-      // Fetch tags
+      // Загрузка тегов
       .addCase(fetchTags.pending, (state) => {
         state.tags.items = [];
         state.tags.status = 'loading';
@@ -63,7 +63,7 @@ const postsSlice = createSlice({
         state.tags.items = [];
         state.tags.status = 'error';
       })
-      // Delete posts
+      // Удаление постов
       .addCase(fetchRemovePost.pending, (state) => {
         state.posts.deleteStatus = 'loading'; // Устанавливаем статус загрузки
       })

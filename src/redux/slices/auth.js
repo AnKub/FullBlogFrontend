@@ -99,7 +99,7 @@ const authSlice = createSlice({
   },
 });
 
-// Селектор для проверки авторизации
+// Добавляем селектор для проверки авторизации
 export const selectIsAuth = (state) => Boolean(state.auth.data);
 
 // Экспорт редюсера и действий

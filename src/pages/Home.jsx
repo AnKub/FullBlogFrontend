@@ -24,29 +24,29 @@ export const Home = () => {
 
   return (
     <>
-       <Tabs
-      value={0}
-      aria-label="basic tabs example"
-      sx={{
-        marginBottom: 15,
-        '& .MuiTab-root': {
-          color: '#d1e8e2', 
-        },
-        '& .Mui-selected': {
-          color: '#D9B08C', 
-        },
-      }}
-    >
-      <Tab label="New" />
-      <Tab label="Popular" />
-    </Tabs>
+      <Tabs
+        value={0}
+        aria-label="basic tabs example"
+        sx={{
+          marginBottom: 15,
+          '& .MuiTab-root': {
+            color: '#d1e8e2', 
+          },
+          '& .Mui-selected': {
+            color: '#D9B08C', 
+          },
+        }}
+      >
+        <Tab label="New" />
+        <Tab label="Popular" />
+      </Tabs>
       <Grid container spacing={4}>
         <Grid item xs={8}>
           {(isPostsLoading ? [...Array(5)] : posts.items).map((obj, index) =>
             isPostsLoading ? (
               <Post key={index} isLoading={true} />
             ) : (
-              obj && obj._id && (
+              obj && obj._id ? (
                 <Post
                   key={obj._id}
                   id={obj._id}
@@ -59,12 +59,18 @@ export const Home = () => {
                   tags={obj.tags}
                   isEditable={userData?._id === obj.user._id}
                 />
+              ) : (
+                <div key={index}>Invalid post data</div>
               )
             )
           )}
         </Grid>
         <Grid item xs={4}>
-          <TagsBlock items={tags.items} isLoading={isTagsLoading} />
+          {tags.items && tags.items.length > 0 ? (
+            <TagsBlock items={tags.items} isLoading={isTagsLoading} />
+          ) : (
+            <TagsBlock items={[]} isLoading={isTagsLoading} />
+          )}
           <CommentsBlock
             items={[
               {

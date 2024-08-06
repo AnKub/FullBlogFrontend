@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Clear';
@@ -12,7 +12,6 @@ import styles from './Post.module.scss';
 import { UserInfo } from '../UserInfo';
 import { PostSkeleton } from './Skeleton';
 import { fetchRemovePost } from '../../redux/slices/posts';
-
 
 export const Post = ({
   id,
@@ -29,15 +28,17 @@ export const Post = ({
   isEditable,
 }) => {
   const dispatch = useDispatch();
+
+  // Показ скелетона при загрузке
   if (isLoading) {
     return <PostSkeleton />;
   }
 
+  // Функция для удаления поста
   const onClickRemove = () => {
-    if(window.confirm('Are you sure you want to delete?')) {
-    dispatch(fetchRemovePost(id));
+    if (window.confirm('Are you sure you want to delete?')) {
+      dispatch(fetchRemovePost(id));
     }
-   
   };
 
   return (
