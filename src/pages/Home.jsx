@@ -30,10 +30,10 @@ export const Home = () => {
         sx={{
           marginBottom: 15,
           '& .MuiTab-root': {
-            color: '#d1e8e2', 
+            color: '#d1e8e2',
           },
           '& .Mui-selected': {
-            color: '#D9B08C', 
+            color: '#D9B08C',
           },
         }}
       >

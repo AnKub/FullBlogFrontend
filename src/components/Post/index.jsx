@@ -19,9 +19,9 @@ export const Post = ({
   createdAt,
   imageUrl,
   user,
-  viewsCount,
-  commentsCount,
-  tags,
+  viewsCount = 0,  // Значение по умолчанию
+  commentsCount = 0,  // Значение по умолчанию
+  tags = [],  // Значение по умолчанию
   children,
   isFullPost,
   isLoading,
@@ -59,22 +59,30 @@ export const Post = ({
         <img
           className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
           src={imageUrl}
-          alt={title}
+          alt={title || 'Post image'}  // Использование заголовка или текст по умолчанию
         />
       )}
       <div className={styles.wrapper}>
-        <UserInfo {...user} additionalText={createdAt} />
+        {user ? (
+          <UserInfo {...user} additionalText={createdAt || 'Unknown date'} />
+        ) : (
+          <div>User info unavailable</div>  // Обработка отсутствия информации о пользователе
+        )}
         <div className={styles.indention}>
           <h2 className={clsx(styles.title, { [styles.titleFull]: isFullPost })}>
-            {isFullPost ? title : <Link to={`/posts/${id}`}>{title}</Link>}
+            {isFullPost ? title : <Link to={`/posts/${id}`}>{title || 'Untitled'}</Link>}
           </h2>
-          <ul className={styles.tags}>
-            {tags.map((name) => (
-              <li key={name}>
-                <Link to={`/tag/${name}`}>#{name}</Link>
-              </li>
-            ))}
-          </ul>
+          {tags.length > 0 ? (
+            <ul className={styles.tags}>
+              {tags.map((name) => (
+                <li key={name}>
+                  <Link to={`/tag/${name}`}>#{name}</Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div>No tags available</div>  // Обработка отсутствия тегов
+          )}
           {children && <div className={styles.content}>{children}</div>}
           <ul className={styles.postDetails}>
             <li>
