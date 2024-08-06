@@ -22,6 +22,7 @@ const initialState = {
   posts: {
     items: [],
     status: 'loading',
+    deleteStatus: 'idle', // Добавляем состояние для удаления
   },
   tags: {
     items: [],
@@ -34,46 +35,45 @@ const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {},
-  extraReducers: {
-    // Fetch posts
-    [fetchPosts.pending]: (state) => {
-      state.posts.items = [];
-      state.posts.status = 'loading';
-    },
-    [fetchPosts.fulfilled]: (state, action) => {
-      state.posts.items = action.payload;
-      state.posts.status = 'loaded';
-    },
-    [fetchPosts.rejected]: (state) => {
-      state.posts.items = [];
-      state.posts.status = 'error';
-    },
-    // Fetch tags
-    [fetchTags.pending]: (state) => {
-      state.tags.items = [];
-      state.tags.status = 'loading';
-    },
-    [fetchTags.fulfilled]: (state, action) => {
-      state.tags.items = action.payload;
-      state.tags.status = 'loaded';
-    },
-    [fetchTags.rejected]: (state) => {
-      state.tags.items = [];
-      state.tags.status = 'error';
-    },
-    // Delete posts
-    [fetchRemovePost.pending]: (state, action) => {
-      // Удаляем пост из состояния до завершения запроса
-      state.posts.items = state.posts.items.filter((obj) => obj._id !== action.meta.arg);
-    },
-    [fetchRemovePost.fulfilled]: (state, action) => {
-      // Удаляем пост из состояния после успешного завершения запроса
-      state.posts.items = state.posts.items.filter((obj) => obj._id !== action.payload);
-    },
-    [fetchRemovePost.rejected]: (state) => {
-      // Обработка ошибки удаления поста
-      state.posts.status = 'error';
-    },
+  extraReducers: (builder) => {
+    builder
+      // Fetch posts
+      .addCase(fetchPosts.pending, (state) => {
+        state.posts.items = [];
+        state.posts.status = 'loading';
+      })
+      .addCase(fetchPosts.fulfilled, (state, action) => {
+        state.posts.items = action.payload;
+        state.posts.status = 'loaded';
+      })
+      .addCase(fetchPosts.rejected, (state) => {
+        state.posts.items = [];
+        state.posts.status = 'error';
+      })
+      // Fetch tags
+      .addCase(fetchTags.pending, (state) => {
+        state.tags.items = [];
+        state.tags.status = 'loading';
+      })
+      .addCase(fetchTags.fulfilled, (state, action) => {
+        state.tags.items = action.payload;
+        state.tags.status = 'loaded';
+      })
+      .addCase(fetchTags.rejected, (state) => {
+        state.tags.items = [];
+        state.tags.status = 'error';
+      })
+      // Delete posts
+      .addCase(fetchRemovePost.pending, (state) => {
+        state.posts.deleteStatus = 'loading'; // Устанавливаем статус загрузки
+      })
+      .addCase(fetchRemovePost.fulfilled, (state, action) => {
+        state.posts.items = state.posts.items.filter((obj) => obj._id !== action.payload);
+        state.posts.deleteStatus = 'idle'; // Устанавливаем статус как завершенный
+      })
+      .addCase(fetchRemovePost.rejected, (state) => {
+        state.posts.deleteStatus = 'error'; // Устанавливаем статус ошибки
+      });
   },
 });
 
