@@ -46,12 +46,23 @@ export const AddPost = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+
+    // Проверка длины текста
+    if (text.length < 10) {
+      alert('Text must be at least 10 characters long.');
+      return;
+    }
+
     try {
       setLoading(true);
+
+      // Разделение строки тегов на массив
+      const tagsArray = tags.split(',').map(tag => tag.trim());
+
       const fields = {
         title,
-        imageUrl,
-        tags,
+        imageUrl: imageUrl || null, // Убедитесь, что imageUrl либо строка, либо null
+        tags: tagsArray, // Убедитесь, что это массив
         text,
       };
 
@@ -63,7 +74,7 @@ export const AddPost = () => {
 
       navigate(`/posts/${_id}`);
     } catch (err) {
-      console.warn(err);
+      console.warn(err.response ? err.response.data : err);
       alert('Trouble with creating');
     } finally {
       setLoading(false);
@@ -95,6 +106,7 @@ export const AddPost = () => {
     autosave: {
       enabled: true,
       delay: 1000,
+      uniqueId: "post-content", // Добавлено уникальное значение
     },
   }), []);
 
