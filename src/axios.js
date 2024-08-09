@@ -25,35 +25,35 @@ instance.interceptors.response.use(
   (response) => response,
   async (error) => {
     console.error('Axios error:', error);
-    
+
     if (error.response) {
-      const { data, status, headers } = error.response;
-      
+      const { data, status } = error.response;
+
       console.error('Response data:', data);
       console.error('Response status:', status);
-      console.error('Response headers:', headers);
-      
+
       // Обработка ошибок для различных статусов
       switch (status) {
         case 401:
           console.error('401 Unauthorized: Token might be invalid or expired');
-          // Перенаправляем пользователя на страницу входа, если необходимо
-          // window.location.href = '/login';
+          // Очистка токена и перенаправление на страницу входа
+          window.localStorage.removeItem('token');
+          window.location.href = '/login';
           break;
         case 403:
           console.error('403 Forbidden: Access denied');
-          // Можно добавить логику для перенаправления или уведомления пользователя
+          // Можно добавить логику для уведомления пользователя
           break;
         case 400:
           console.error('400 Bad Request: Check request parameters');
-          // Можно добавить логику для уведомления пользователя о проблеме с запросом
+          // Можно добавить логику для уведомления пользователя
           break;
         default:
           console.error(`Unhandled error status: ${status}`);
       }
     }
-    
-    return Promise.reject(error); // Возвращаем ошибку для дальнейшей обработки
+
+    return Promise.reject(error);
   }
 );
 

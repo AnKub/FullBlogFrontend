@@ -22,23 +22,28 @@ export const Registration = () => {
     formState: { errors, isValid }, 
   } = useForm({
     defaultValues: {
-      fullName: 'Angus',
-      email: 'test@g.ua',
-      password: "1234",
+      fullName: '',
+      email: '',
+      password: '',
     },
     mode: 'onChange',
   });
 
   const onSubmit = async (values) => {
     const data = await dispatch(fetchRegister(values));
-    if (!data.payload) {
-      setError('fullName', { type: 'manual', message: 'Registration failed. Check your full name.' });
-      setError('email', { type: 'manual', message: 'Registration failed. Check your email.' });
-      setError('password', { type: 'manual', message: 'Registration failed. Check your password.' });
-      return alert('Some trouble with registration');
+
+    if (data.error) {
+      const errorMsg = data.error.message || 'Registration failed. Please try again.';
+      setError('fullName', { type: 'manual', message: errorMsg });
+      setError('email', { type: 'manual', message: errorMsg });
+      setError('password', { type: 'manual', message: errorMsg });
+      return alert(errorMsg);
     }
-    if('token' in data.payload) {
+
+    if ('token' in data.payload) {
       window.localStorage.setItem('token', data.payload.token);
+    } else {
+      alert('Registration successful, but no token received.');
     }
   };
 
