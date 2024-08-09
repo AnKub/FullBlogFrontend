@@ -46,40 +46,53 @@ export const AddPost = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-
+  
     // Проверка длины текста
     if (text.length < 10) {
       alert('Text must be at least 10 characters long.');
       return;
     }
-
+  
     try {
       setLoading(true);
-
-      // Разделение строки тегов на массив
+  
       const tagsArray = tags.split(',').map(tag => tag.trim());
-
+  
       const fields = {
         title,
-        imageUrl: imageUrl || null, // Убедитесь, что imageUrl либо строка, либо null
-        tags: tagsArray, // Убедитесь, что это массив
+        imageUrl: imageUrl || null,
+        tags: tagsArray,
         text,
       };
-
+  
       const { data } = isEditing
         ? await axios.patch(`/posts/${id}`, fields)
         : await axios.post('/posts', fields);
-
+  
       const _id = isEditing ? id : data._id;
-
+  
       navigate(`/posts/${_id}`);
     } catch (err) {
-      console.warn(err.response ? err.response.data : err);
-      alert('Trouble with creating');
+      if (err.response && err.response.data) {
+        // Логируем статус, сообщение и ошибки
+        console.log('Response status:', err.response.status);
+        console.log('Response data:', err.response.data);
+        console.log('Errors:', err.response.data.errors);
+  
+        // Выводим сообщение для пользователя
+        const errors = err.response.data.errors;
+        const errorMessages = errors.map((error) => `${error.msg} in ${error.path}`).join(', ');
+        alert(`Validation failed: ${errorMessages}`);
+      } else {
+        console.error('Error:', err);
+        alert('Trouble with creating post');
+      }
     } finally {
       setLoading(false);
     }
   };
+  
+  
 
   React.useEffect(() => {
     if (id) {
