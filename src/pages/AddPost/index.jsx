@@ -15,11 +15,7 @@ export const AddPost = () => {
   const navigate = useNavigate();
   const isAuth = useSelector(selectIsAuth);
   const [isLoading, setLoading] = React.useState(false);
-  const [text, setText] = React.useState('');
-  const [title, setTitle] = React.useState('');
-  const [tags, setTags] = React.useState('');
-  const [imageUrl, setImageUrl] = React.useState('');
-  const inputFileRef = React.useRef(null);
+
 
   const isEditing = Boolean(id);
 
