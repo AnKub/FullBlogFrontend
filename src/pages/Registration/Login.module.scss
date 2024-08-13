@@ -1,8 +1,10 @@
 .root {
-  width: 400px;
   padding: 50px;
   border: 1px solid #dedede;
   margin: 50px auto;
+  background-color: rgba(0, 0, 0, 0.6)!important; /* Полупрозрачный фон для всего контейнера */
+  border-radius: 15px; /* Закругленные углы контейнера */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для глубины */
 }
 
 .field {
@@ -13,6 +15,7 @@
   text-align: center !important;
   font-weight: bold !important;
   margin-bottom: 30px !important;
+  color: #d1e8e2 !important;
 }
 
 .avatar {

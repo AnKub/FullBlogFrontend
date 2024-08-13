@@ -1,14 +1,14 @@
 .root {
   margin-bottom: 20px;
-  color: #d1e8e2;
-  background-color: #2c3531;
+  color: #d1e8e2 !important;
+  background-color: rgba(0, 0, 0, 0.6)!important;
 }
 .title {
-  padding: 15px 15px 0 15px;
-  background-color: #2c3531;
+  padding: 10px 10px 10px 10px;
   color: #d1e8e2;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.6)!important;
   }
   .children{
-    background-color: #2c3531;
-    color: #d1e8e2;
+    color: #d1e8e2 !important;
   }

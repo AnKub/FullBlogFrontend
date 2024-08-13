@@ -3,14 +3,38 @@
   padding: 50px;
   border: 1px solid #dedede;
   margin: 50px auto;
+  background-color: rgba(0, 0, 0, 0.6)!important; /* Полупрозрачный фон для всего контейнера */
+  border-radius: 15px; /* Закругленные углы контейнера */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для глубины */
 }
 
 .field {
   margin-bottom: 20px !important;
+
+  
+  .MuiInputBase-root {
+    background-color: rgba(255, 255, 255, 0.2) !important; /* Полупрозрачный фон для полей ввода */
+    border-radius: 4px; /* Закругленные углы для полей ввода */
+    padding: 10px;
+  }
+  .MuiInputBase-input {
+    color: #d1e8e2 !important; /* Цвет текста внутри полей ввода */
+  }
 }
 
 .title {
   text-align: center !important;
   font-weight: bold !important;
   margin-bottom: 30px !important;
+  color: #d1e8e2 !important; /* Цвет заголовка */
+}
+
+button {
+  margin-left: 10px;
+  background-color: rgba(255, 255, 255, 0.2) !important; 
+  color: #d1e8e2;
+
+  &:hover {
+    background: rgb(2,0,36);
+ background: linear-gradient(0deg, rgba(17,100,102,1) 0%, rgba(217,176,140,1) 100%);}
 }

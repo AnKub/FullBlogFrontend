@@ -3,7 +3,10 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #116466!important;
+  background-image: url('./wp/wp5.jpg'); /* Укажите путь к вашему изображению */
+  background-size: cover; /* Изображение будет растягиваться на всю ширину и высоту экрана, сохраняя пропорции */
+  background-repeat: no-repeat; /* Изображение не будет повторяться */
+  background-position: center center; /* Изображение будет выровнено по центру */
   color: #d1e8e2;
-
+  min-height: 100vh;
 }
