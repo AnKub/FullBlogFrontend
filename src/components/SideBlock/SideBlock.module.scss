@@ -1,14 +1,18 @@
 .root {
   margin-bottom: 20px;
+  border-radius: 20px !important;
+  border: 1px solid #D9B08C;
   color: #d1e8e2 !important;
   background-color: rgba(0, 0, 0, 0.6)!important;
 }
 .title {
   padding: 10px 10px 10px 10px;
+  border-radius: 20px !important;
   color: #d1e8e2;
-  border-radius: 20px;
+  border: 1px solid #D9B08C;
   background-color: rgba(0, 0, 0, 0.6)!important;
-  }
-  .children{
+   .children{
     color: #d1e8e2 !important;
   }
+  }
+  

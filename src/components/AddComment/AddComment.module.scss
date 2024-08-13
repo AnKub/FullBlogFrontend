@@ -4,26 +4,25 @@
   padding-bottom: 20px;
   padding-right: 20px;
   padding-left: 17px;
-  background-color: rgba(0, 0, 0, 0.6)!important;
   color: #d1e8e2;
- }
+}
 
 .avatar {
   margin-right: 15px;
 }
+
 .title {
   padding: 15px 15px 0 15px;
-  background-color: rgba(0, 0, 0, 0.6)!important;
+  background-color: rgba(0, 0, 0, 0.6) !important;
   color: #d1e8e2;
-  }
-  .children{
-    background-color: rgba(0, 0, 0, 0.6)!important;
-    color: #d1e8e2;
-  }
+}
 
+.children {
+  color: #d1e8e2;
+}
 
 .form {
-  width: 100%; 
+  width: 100%;
 }
 
 .form button {
@@ -33,28 +32,69 @@
 }
 
 .form button:hover {
-  background: rgb(2, 0, 36);
   background: linear-gradient(0deg, rgba(17, 100, 102, 1) 0%, rgba(217, 176, 140, 1) 100%);
 }
-.textField label {
-  color: #d1e8e2;
+
+.textField {
+  width: 100%;
+
+  .MuiOutlinedInput-root {
+    color: #d1e8e2; /* Цвет текста внутри поля ввода */
+
+    & fieldset {
+      border-color: #d1e8e2; /* Цвет границы поля ввода */
+    }
+
+    &:hover fieldset {
+      border-color: #D9B08C; /* Цвет границы при наведении */
+    }
+
+    &.Mui-focused fieldset {
+      border-color: #D9B08C; /* Цвет границы при фокусе */
+    }
+  }
+
+  .MuiInputLabel-root {
+    color: #d1e8e2; /* Цвет текста метки */
+  }
+
+  .MuiInputLabel-root.Mui-focused {
+    color: #D9B08C; /* Цвет метки при фокусе */
+  }
 }
-.textField input {
+
+.textFieldInput {
   color: #d1e8e2;
+
+  & fieldset {
+    border-color: #d1e8e2;
+  }
+
+  &:hover fieldset {
+    border-color: #D9B08C;
+  }
+
+  &.Mui-focused fieldset {
+    border-color: #D9B08C;
+  }
 }
+
+.textFieldLabel {
+  color: #d1e8e2;
+
+  &.Mui-focused {
+    color: #D9B08C;
+  }
+}
+
 .listItem {
-  color: #d1e8e2;
-  background-color: rgba(0, 0, 0, 0.6)!important;
-  margin-bottom: 8px;
-  &primary {
-    color: #d1e8e2; /* Цвет шрифта для основного текста */
+  color: #d1e8e2; /* Основной цвет текста */
 }
-&secondary {
-  color: #d1e8e2;
-}
+
+.listItemSecondary {
+  color: #d1e8e2 !important; /* Цвет для вторичного текста */
 }
 
 .divider {
   background: #D9B08C;
-  max-width: 90%;
 }

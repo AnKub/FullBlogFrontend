@@ -9,7 +9,7 @@ export const SideBlock = ({ title, children }) => {
       <Typography variant="h6" className={styles.title}> {/* Исправляем сюда использование className */}
         {title}
       </Typography>
-      <div className={styles.children}> {/* Исправляем сюда использование className */}
+      <div className={styles.title.children}> {/* Исправляем сюда использование className */}
         {children}
       </div>
     </Paper>

@@ -28,7 +28,7 @@ export const Home = () => {
         value={0}
         aria-label="basic tabs example"
         sx={{
-          marginBottom: 15,
+          marginBottom: 10,
           '& .MuiTab-root': {
             color: '#d1e8e2',
           },

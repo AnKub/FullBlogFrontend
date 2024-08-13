@@ -12,8 +12,8 @@ import styles from "./AddComment/AddComment.module.scss";
 
 export const CommentsBlock = ({ items, children, isLoading = true }) => {
   return (
-    <SideBlock title="Comments" classes={{ root: styles.title }}>
-      <List classes={{ root: styles.children}}>
+    <SideBlock title="Comments">
+      <List className={styles.children}>
         {(isLoading ? [...Array(5)] : items).map((obj, index) => (
           <React.Fragment key={index}>
             <ListItem alignItems="flex-start">
@@ -30,13 +30,14 @@ export const CommentsBlock = ({ items, children, isLoading = true }) => {
                   <Skeleton variant="text" height={18} width={230} />
                 </div>
               ) : (
-                <ListItemText   classes={{ root: styles.listItem}}
+                <ListItemText
                   primary={obj.user.fullName}
                   secondary={obj.text}
+                  classes={{ primary: styles.listItem, secondary: styles.listItemSecondary }} // Применение стилей для текста
                 />
               )}
             </ListItem>
-            <Divider  classes={{ root: styles.divider}} variant="inset" component="li" />
+            <Divider className={styles.divider} variant="inset" component="li" />
           </React.Fragment>
         ))}
       </List>
