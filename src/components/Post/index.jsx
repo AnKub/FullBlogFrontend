@@ -57,10 +57,10 @@ export const Post = ({
       )}
       {imageUrl && (
         <img
-          className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
-          src={imageUrl}
-          alt={title || 'Post image'}  // Использование заголовка или текст по умолчанию
-        />
+        className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
+        src={imageUrl.startsWith('http') ? imageUrl : `http://localhost:4444/${imageUrl}`} 
+        alt={title || 'Post image'}
+      />
       )}
       <div className={styles.wrapper}>
         {user ? (

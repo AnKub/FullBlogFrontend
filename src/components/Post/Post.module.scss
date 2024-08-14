@@ -8,9 +8,9 @@ $gold: #D9B08C;
   position: relative;
   color: #d1e8e2;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.6)!important; /* Полупрозрачный фон для всего контейнера */
-  border-radius: 15px; /* Закругленные углы контейнера */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для глубины */
+  background-color: rgba(0, 0, 0, 0.6)!important; 
+  border-radius: 15px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 
   &:hover {
     border: 1px solid $gold;
